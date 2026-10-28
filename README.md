@@ -32,18 +32,31 @@
 
 ## 提供的实体
 
+一个配置项会创建**两个设备**：门锁本体，以及它所属的网关（锁的「via」关系挂在网关下）。
+
+### 门锁
+
 | 实体 | 类型 | 说明 |
 |---|---|---|
 | `sensor.<设备名>_door_state` | 枚举 | 门状态：`open` / `closed` |
 | `sensor.<设备名>_battery` | 电量 | 剩余电量百分比 |
-| `sensor.<设备名>_signal` | 信号 | 网关信号质量（lqi） |
-| `sensor.<设备名>_last_event` | 文本 | 最近一次开门的来源，如「指纹-张三」「临时密码」 |
+| `sensor.<设备名>_signal` | 信号 | 门锁到网关的信号质量（lqi） |
+| `sensor.<设备名>_last_event` | 文本 | 最近一次开门的可读描述，如 `张三使用指纹开锁`、`临时使用密码开锁` |
 | `sensor.<设备名>_last_event_time` | 时间戳 | 最近一次开门的时间 |
 | `binary_sensor.<设备名>_online` | 连通性 | 门锁是否在线 |
 
-`last_event` 还带有三个属性：`event_id`、`source`（开锁方式代码）、`occurred_at`（ISO 时间）。
+`last_event` 还带有几个属性：`who`（是谁）、`method`（开锁方式）、`event_id`、`source`（云端原始方式代码）、`occurred_at`（ISO 时间）。
 
-数据每 **60 秒**轮询一次。
+### 网关
+
+| 实体 | 类型 | 说明 |
+|---|---|---|
+| `binary_sensor.<网关名>_online` | 连通性 | 网关是否在线 |
+| `sensor.<网关名>_linked_devices` | 数量 | 网关下已关联的设备数 |
+| `sensor.<网关名>_firmware` | 文本 | 网关固件版本（诊断） |
+| `sensor.<网关名>_reported_ip` | 文本 | 网关上报的公网 IP（诊断，默认禁用） |
+
+数据每 **60 秒**轮询一次；密码/指纹/门卡列表与账号设备拓扑每 10 分钟刷新一次（只用于把开锁记录翻译成人类可读的文字）。
 
 ---
 
@@ -99,7 +112,7 @@
 2. 搜索 **Lockin Cloud**
 3. 粘贴 `access_token`，提交
 4. 账号下有多把锁时，会让你选择要添加哪一把
-5. 完成后会出现「设备名」设备和 6 个实体
+5. 完成后会创建「门锁」和「网关」两个设备，共 10 个实体（其中网关的公网 IP 实体默认禁用）
 
 ---
 
@@ -133,9 +146,10 @@ automation:
     actions:
       - action: notify.mobile_app_your_phone
         data:
+          title: 门口有人
           message: >-
-            {{ state_attr('sensor.da_men_last_event', 'occurred_at') }}
-            由 {{ states('sensor.da_men_last_event') }} 开门
+            {{ states('sensor.da_men_last_event') }}
+            （{{ state_attr('sensor.da_men_last_event', 'occurred_at') }}）
 ```
 
 ---
@@ -170,6 +184,7 @@ sign = md5( java_urlencode( (method + path).lower()
 - **只读**：不支持远程开锁、上锁、改密码、发临时密码。
 - **延迟**：轮询周期 60 秒，门状态变化最多晚 60 秒反映到 HA。想更快可以把 `const.py` 里的 `DEFAULT_SCAN_INTERVAL` 改小，但不建议低于 30 秒，避免触发风控。
 - **依赖云**：断网、鹿客服务器故障、门锁离线，实体都会变成 `unavailable`。
+- **开锁方式是本地推断的**：云端只返回一个 `source` 数字代码和凭据 id，没有文字。集成把代码映射成「密码 / 指纹 / 门卡 / 钥匙 / 手机 …」，并用指纹、密码、门卡列表反查谁在使用。已用真机数据核对过 `2`（密码）和 `3`（指纹）；遇到没见过的代码时，文字会退化成 `某某开锁`，原始 `source` 仍保留在属性里。
 - **token 需要手动获取**：没有实现账号密码登录，因为那需要处理短信验证码和图形验证码。
 
 ---
@@ -182,6 +197,7 @@ sign = md5( java_urlencode( (method + path).lower()
 | 实体变成 `unavailable` | HA 到 `device-server-2c.dding.net` 不通 | 检查 HA 容器能否解析并访问该域名 |
 | 门状态一直不变化 | 门锁离线 | 看 `binary_sensor.*_online`；检查网关和电池 |
 | 最近事件一直是旧的 | 该账号很久没人开门 | 正常现象 |
+| 最近开锁只显示「某某开锁」，没有方式 | 遇到了未收录的开锁方式代码 | 看该实体的 `source` 属性，提 issue 说明数字即可（不要贴 token） |
 
 查看日志：设置 → 系统 → 日志，搜索 `lockin_cloud`。
 

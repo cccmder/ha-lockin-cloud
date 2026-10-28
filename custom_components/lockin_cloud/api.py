@@ -107,3 +107,21 @@ class LockinApi:
         return await self._async_get(
             "/api/lock/v1/info", {"uuid": device_uuid}
         )
+
+    async def async_get_gateway_info(self, device_uuid: str) -> dict[str, Any]:
+        """Return detailed state of a single gateway."""
+        return await self._async_get(
+            "/api/gateway/v1/info", {"uuid": device_uuid}
+        )
+
+    async def async_get_passwords(self, device_uuid: str) -> dict[str, Any]:
+        """Return the password slots stored on a lock."""
+        return await self._async_get("/api/lock/v1/pwd", {"uuid": device_uuid})
+
+    async def async_get_fingerprints(self, device_uuid: str) -> dict[str, Any]:
+        """Return the fingerprint slots stored on a lock."""
+        return await self._async_get("/api/lock/v1/fp", {"uuid": device_uuid})
+
+    async def async_get_cards(self, device_uuid: str) -> dict[str, Any]:
+        """Return the NFC card slots stored on a lock."""
+        return await self._async_get("/api/lock/v1/card", {"uuid": device_uuid})

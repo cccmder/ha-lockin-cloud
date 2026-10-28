@@ -39,14 +39,26 @@
         "name": "信号"
       },
       "last_event": {
-        "name": "最近事件"
+        "name": "最近开锁"
       },
       "last_event_time": {
-        "name": "最近事件时间"
+        "name": "最近开锁时间"
+      },
+      "gateway_firmware": {
+        "name": "固件版本"
+      },
+      "gateway_linked_devices": {
+        "name": "已关联设备"
+      },
+      "gateway_ip": {
+        "name": "上报 IP"
       }
     },
     "binary_sensor": {
       "online": {
+        "name": "在线"
+      },
+      "gateway_online": {
         "name": "在线"
       }
     }

@@ -39,14 +39,26 @@
         "name": "Signal"
       },
       "last_event": {
-        "name": "Last event"
+        "name": "Last unlock"
       },
       "last_event_time": {
-        "name": "Last event time"
+        "name": "Last unlock time"
+      },
+      "gateway_firmware": {
+        "name": "Firmware"
+      },
+      "gateway_linked_devices": {
+        "name": "Linked devices"
+      },
+      "gateway_ip": {
+        "name": "Reported IP"
       }
     },
     "binary_sensor": {
       "online": {
+        "name": "Online"
+      },
+      "gateway_online": {
         "name": "Online"
       }
     }
