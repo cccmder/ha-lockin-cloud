@@ -1,0 +1,12 @@
+{
+  "domain": "lockin_cloud",
+  "name": "Lockin Cloud",
+  "codeowners": ["@YOURNAME"],
+  "config_flow": true,
+  "documentation": "https://github.com/CHANGEME/ha-lockin-cloud",
+  "issue_tracker": "https://github.com/CHANGEME/ha-lockin-cloud/issues",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "0.1.0"
+}

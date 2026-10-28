@@ -1,0 +1,39 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Home Assistant local artifacts
+.storage/
+*.db
+*.sqlite
+*.log
+home-assistant.log*
+
+# Secrets and captured traffic — NEVER commit these
+token.txt
+token.json
+*.har
+*.pcap
+*.apk
+secrets.yaml
+.env
+*.pkl
+sign_samples.*
+
+# Local scratch
+tmp/
+scratch/

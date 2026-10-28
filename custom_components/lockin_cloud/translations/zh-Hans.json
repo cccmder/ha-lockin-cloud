@@ -1,0 +1,54 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "鹿客云",
+        "description": "填入从鹿客 App 抓包得到的 `access_token`（形如 `id:secret`）。",
+        "data": {
+          "access_token": "访问令牌"
+        }
+      },
+      "device": {
+        "title": "选择门锁",
+        "data": {
+          "device_uuid": "门锁"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "无法访问鹿客云，请检查令牌或网络。",
+      "no_device": "该账号下没有找到门锁。"
+    },
+    "abort": {
+      "already_configured": "这把门锁已经添加过了。"
+    }
+  },
+  "entity": {
+    "sensor": {
+      "door_state": {
+        "name": "门状态",
+        "state": {
+          "open": "开",
+          "closed": "关"
+        }
+      },
+      "battery": {
+        "name": "电量"
+      },
+      "signal": {
+        "name": "信号"
+      },
+      "last_event": {
+        "name": "最近事件"
+      },
+      "last_event_time": {
+        "name": "最近事件时间"
+      }
+    },
+    "binary_sensor": {
+      "online": {
+        "name": "在线"
+      }
+    }
+  }
+}

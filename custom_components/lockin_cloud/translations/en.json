@@ -1,0 +1,54 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Lockin Cloud",
+        "description": "Paste the `access_token` value captured from the Lockin app (it looks like `id:secret`).",
+        "data": {
+          "access_token": "Access token"
+        }
+      },
+      "device": {
+        "title": "Select a lock",
+        "data": {
+          "device_uuid": "Lock"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not query the Lockin cloud. Check the token and your network.",
+      "no_device": "No lock was found on this account."
+    },
+    "abort": {
+      "already_configured": "This lock is already configured."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "door_state": {
+        "name": "Door state",
+        "state": {
+          "open": "Open",
+          "closed": "Closed"
+        }
+      },
+      "battery": {
+        "name": "Battery"
+      },
+      "signal": {
+        "name": "Signal"
+      },
+      "last_event": {
+        "name": "Last event"
+      },
+      "last_event_time": {
+        "name": "Last event time"
+      }
+    },
+    "binary_sensor": {
+      "online": {
+        "name": "Online"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 380" width="860" height="380" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="860" height="380" fill="#ffffff"/>
+
+  <!-- 标题 -->
+  <text x="430" y="34" text-anchor="middle" font-size="17" font-weight="600" fill="#1f2937">Lockin Cloud 集成数据流</text>
+
+  <!-- 左侧：物理设备 -->
+  <rect x="36" y="70" width="190" height="76" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="131" y="102" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">鹿客 P3 门锁</text>
+  <text x="131" y="124" text-anchor="middle" font-size="12" fill="#64748b">PFPL803</text>
+
+  <rect x="36" y="176" width="190" height="76" rx="10" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="131" y="208" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">鹿客网关</text>
+  <text x="131" y="230" text-anchor="middle" font-size="12" fill="#64748b">DC-MC02</text>
+
+  <line x1="131" y1="146" x2="131" y2="176" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="140" y="166" font-size="11" fill="#94a3b8">Zigbee</text>
+
+  <!-- 中间：云 -->
+  <rect x="300" y="118" width="200" height="120" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="400" y="152" text-anchor="middle" font-size="14" font-weight="600" fill="#1e3a8a">鹿客云 API</text>
+  <text x="400" y="176" text-anchor="middle" font-size="11" fill="#3b82f6">device-server-2c.dding.net</text>
+  <text x="400" y="198" text-anchor="middle" font-size="11" fill="#64748b">/api/lock/v1/info</text>
+  <text x="400" y="216" text-anchor="middle" font-size="11" fill="#64748b">/api/v1/safety/family_record</text>
+
+  <path d="M226 214 L300 190" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+
+  <!-- 右侧：HA -->
+  <rect x="580" y="70" width="240" height="220" rx="10" fill="#f0fdf4" stroke="#86efac"/>
+  <text x="700" y="98" text-anchor="middle" font-size="14" font-weight="600" fill="#14532d">Home Assistant</text>
+  <text x="700" y="118" text-anchor="middle" font-size="11" fill="#16a34a">lockin_cloud 集成</text>
+
+  <rect x="600" y="134" width="200" height="140" rx="8" fill="#ffffff" stroke="#d1fae5"/>
+  <text x="612" y="156" font-size="11.5" fill="#334155">门状态 · 电量 · 信号</text>
+  <text x="612" y="178" font-size="11.5" fill="#334155">在线状态</text>
+  <text x="612" y="200" font-size="11.5" fill="#334155">最近开门人 · 时间</text>
+  <text x="612" y="230" font-size="10.5" fill="#94a3b8">6 个原生实体 · 有历史记录</text>
+  <text x="612" y="248" font-size="10.5" fill="#94a3b8">可进自动化 / 看板</text>
+
+  <!-- 轮询箭头 -->
+  <path d="M500 168 L580 168" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#b)"/>
+  <path d="M580 200 L500 200" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4 3" fill="none" marker-end="url(#a)"/>
+  <text x="540" y="160" text-anchor="middle" font-size="11" fill="#2563eb">每 60 秒</text>
+  <text x="540" y="216" text-anchor="middle" font-size="10.5" fill="#94a3b8">签名请求</text>
+
+  <!-- 底部说明 -->
+  <text x="430" y="330" text-anchor="middle" font-size="11.5" fill="#64748b">sign = md5( java_urlencode( method + path + 排序后的参数 + SECRET ) )</text>
+  <text x="430" y="352" text-anchor="middle" font-size="10.5" fill="#94a3b8">门锁本身不上公网，经网关上报云端；HA 只读取云端数据，不发起任何写操作</text>
+
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+</svg>
