@@ -4,9 +4,9 @@
   "codeowners": ["@cccmder"],
   "config_flow": true,
   "documentation": "https://github.com/cccmder/ha-lockin-cloud",
-  "issue_tracker": "https://github.com/cccmder/ha-lockin-cloud/issues",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/cccmder/ha-lockin-cloud/issues",
   "requirements": [],
   "version": "0.1.0"
 }

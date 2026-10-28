@@ -6,3 +6,7 @@
 *.yaml text eol=lf
 *.yml text eol=lf
 *.svg text eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary
