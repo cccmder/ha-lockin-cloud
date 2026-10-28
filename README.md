@@ -65,7 +65,7 @@
 ### 方式一：HACS 自定义存储库（推荐）
 
 1. 打开 HACS → 集成 → 右上角 `⋮` → **自定义存储库**
-2. 仓库地址填 `https://github.com/YOURNAME/ha-lockin-cloud`
+2. 仓库地址填 `https://github.com/cccmder/ha-lockin-cloud`
 3. 类别选 **Integration**，点击添加
 4. 在 HACS 里搜索 **Lockin Cloud** 并下载
 5. **重启 Home Assistant**
