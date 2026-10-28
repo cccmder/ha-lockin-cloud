@@ -1,6 +1,7 @@
 # Lockin Cloud for Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
+[![Validate](https://github.com/cccmder/ha-lockin-cloud/actions/workflows/validate.yml/badge.svg)](https://github.com/cccmder/ha-lockin-cloud/actions/workflows/validate.yml)
 
 把**鹿客（Lockin）智能门锁**接入 Home Assistant 的非官方集成。通过鹿客云 API 只读获取门状态、电量、在线状态、信号强度和最近一次开门记录。
 
